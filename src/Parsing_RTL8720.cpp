@@ -24,7 +24,7 @@
 #define Parsing_RTL8720_Impl_h
 
 #include <Arduino.h>
-
+#include <utility/WiFiDebug.h>
 #include "WiFiWebServer_RTL8720.h"
 
 #ifndef WEBSERVER_MAX_POST_ARGS

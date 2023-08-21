@@ -26,9 +26,10 @@
 #include <Arduino.h>
 #include <libb64/cencode.h>
 
-#include "utility/RequestHandlersImpl.h"
 #include "utility/WiFiDebug.h"
 #include "utility/mimetable.h"
+#include "WiFiWebServer_RTL8720.h"
+#include "utility/RequestHandlers.cpp"
 
 const char * AUTHORIZATION_HEADER = "Authorization";
 

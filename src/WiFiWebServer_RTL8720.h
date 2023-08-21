@@ -44,6 +44,7 @@
 
 #include "utility/mimetable.h"
 #include "utility/RingBuffer.h"
+#include "utility/RequestHandler.h"
 
 #include <string.h>
 
@@ -65,25 +66,6 @@
 
 //////
 
-enum HTTPMethod
-{
-  HTTP_ANY,
-  HTTP_GET,
-  HTTP_HEAD,
-  HTTP_POST,
-  HTTP_PUT,
-  HTTP_PATCH,
-  HTTP_DELETE,
-  HTTP_OPTIONS
-};
-
-enum HTTPUploadStatus
-{
-  UPLOAD_FILE_START,
-  UPLOAD_FILE_WRITE,
-  UPLOAD_FILE_END,
-  UPLOAD_FILE_ABORTED
-};
 
 enum HTTPClientStatus
 {
@@ -100,11 +82,6 @@ enum HTTPAuthMethod
 
 #define HTTP_DOWNLOAD_UNIT_SIZE 1460
 
-// Permit user to increase HTTP_UPLOAD_BUFLEN larger than default 2K
-//#define HTTP_UPLOAD_BUFLEN 2048
-#if !defined(HTTP_UPLOAD_BUFLEN)
-  #define HTTP_UPLOAD_BUFLEN 2048
-#endif
 
 #define HTTP_MAX_DATA_WAIT    5000 //ms to wait for the client to send the request
 #define HTTP_MAX_POST_WAIT    5000 //ms to wait for POST data to arrive
@@ -121,18 +98,6 @@ enum HTTPAuthMethod
 /////////////////////////////////////////////////////////////////////////
 
 class WiFiWebServer;
-
-typedef struct
-{
-  HTTPUploadStatus status;
-  String  filename;
-  String  name;
-  String  type;
-  size_t  totalSize;      // file size
-  size_t  currentSize;    // size of data currently in buf
-  size_t  contentLength;  // size of entire post request, file size + headers and other request data.
-  uint8_t buf[HTTP_UPLOAD_BUFLEN];
-} HTTPUpload;
 
 #include "utility/RequestHandler.h"
 
@@ -304,8 +269,8 @@ class WiFiWebServer
     bool              _chunked;
 };
 
-#include "WiFiWebServer_RTL8720-impl.h"
-#include "Parsing_RTL8720-impl.h"
+//#include "WiFiWebServer_RTL8720-impl.h"
+//#include "Parsing_RTL8720-impl.h"
 
 #endif    // WiFiWebServer_RTL8720_h
 

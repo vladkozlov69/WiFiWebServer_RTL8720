@@ -20,10 +20,51 @@
 
 #pragma once
 
+#include <Arduino.h>
+
 #ifndef WFW_UNUSED
   #define WFW_UNUSED(x) (void)(x)
 #endif
 
+// Permit user to increase HTTP_UPLOAD_BUFLEN larger than default 2K
+//#define HTTP_UPLOAD_BUFLEN 2048
+#if !defined(HTTP_UPLOAD_BUFLEN)
+  #define HTTP_UPLOAD_BUFLEN 2048
+#endif
+
+class WiFiWebServer;
+
+enum HTTPMethod
+{
+  HTTP_ANY,
+  HTTP_GET,
+  HTTP_HEAD,
+  HTTP_POST,
+  HTTP_PUT,
+  HTTP_PATCH,
+  HTTP_DELETE,
+  HTTP_OPTIONS
+};
+
+enum HTTPUploadStatus
+{
+  UPLOAD_FILE_START,
+  UPLOAD_FILE_WRITE,
+  UPLOAD_FILE_END,
+  UPLOAD_FILE_ABORTED
+};
+
+typedef struct
+{
+  HTTPUploadStatus status;
+  String  filename;
+  String  name;
+  String  type;
+  size_t  totalSize;      // file size
+  size_t  currentSize;    // size of data currently in buf
+  size_t  contentLength;  // size of entire post request, file size + headers and other request data.
+  uint8_t buf[HTTP_UPLOAD_BUFLEN];
+} HTTPUpload;
 
 class RequestHandler
 {

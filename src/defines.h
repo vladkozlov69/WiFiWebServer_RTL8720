@@ -1,0 +1,15 @@
+/*
+ * defines.h
+ *
+ *  Created on: Aug 21, 2023
+ *      Author: vkozlov
+ */
+
+#ifndef LIBRARIES_WIFIWEBSERVER_RTL8720_SRC_DEFINES_H_
+#define LIBRARIES_WIFIWEBSERVER_RTL8720_SRC_DEFINES_H_
+
+
+
+
+
+#endif /* LIBRARIES_WIFIWEBSERVER_RTL8720_SRC_DEFINES_H_ */

@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "RequestHandler.h"
+#include "../WiFiWebServer_RTL8720.h"
 #include "mimetable.h"
 
 class FunctionRequestHandler : public RequestHandler
